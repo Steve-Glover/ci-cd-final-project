@@ -41,7 +41,7 @@ def list_counters():
     app.logger.info("Request to list all counters...")
 
     counters = [
-        dict(name=count[0], counter=count[1]) 
+        dict(name=count[0], counter=count[1])
         for count in COUNTER.items()
     ]
 
@@ -60,14 +60,14 @@ def create_counters(name):
 
     if name in COUNTER:
         return abort(
-            status.HTTP_409_CONFLICT, 
+            status.HTTP_409_CONFLICT,
             f"Counter {name} already exists"
         )
 
     COUNTER[name] = 0
 
     location_url = url_for(
-        "read_counters", 
+        "read_counters",
         name=name, _external=True
     )
     return (
@@ -84,13 +84,13 @@ def create_counters(name):
 def read_counters(name):
     """Reads a single counter"""
     app.logger.info(
-        "Request to Read counter: %s...", 
+        "Request to Read counter: %s...",
         name
     )
 
     if name not in COUNTER:
         return abort(
-            status.HTTP_404_NOT_FOUND, 
+            status.HTTP_404_NOT_FOUND,
             f"Counter {name} does not exist"
         )
 
@@ -105,13 +105,13 @@ def read_counters(name):
 def update_counters(name):
     """Updates a counter"""
     app.logger.info(
-        "Request to Update counter: %s...", 
+        "Request to Update counter: %s...",
         name
     )
 
     if name not in COUNTER:
         return abort(
-            status.HTTP_404_NOT_FOUND, 
+            status.HTTP_404_NOT_FOUND,
             f"Counter {name} does not exist"
         )
 
@@ -128,7 +128,7 @@ def update_counters(name):
 def delete_counters(name):
     """Deletes a counter"""
     app.logger.info(
-        "Request to Delete counter: %s...", 
+        "Request to Delete counter: %s...",
         name
     )
 
